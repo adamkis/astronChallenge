@@ -2,10 +2,12 @@ package com.adamkis.astronchallenge.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.adamkis.astronchallenge.R;
@@ -65,6 +67,17 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         }else{
             holder.icon.setImageResource(R.drawable.abc_cab_background_top_mtrl_alpha);
         }
+
+        LinearLayout.LayoutParams lllp = (LinearLayout.LayoutParams)holder.icon.getLayoutParams();
+
+        if( mDataset.get(position).getGender().equals("male") ){
+            lllp.gravity= Gravity.RIGHT;
+        }
+        else{
+            lllp.gravity= Gravity.LEFT;
+        }
+
+        holder.icon.setLayoutParams(lllp);
 
     }
 
