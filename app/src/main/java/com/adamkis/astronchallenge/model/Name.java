@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by adam on 8/25/15.
  */
-public class Name {
+public class Name implements Comparable<Name> {
 
 
 
@@ -44,5 +44,10 @@ public class Name {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Name other) {
+        return ( getFirstName() + getLastName() ).compareTo( other.getFirstName() + other.getLastName() );
     }
 }

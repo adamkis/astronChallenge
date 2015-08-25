@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by adam on 8/25/15.
  */
-public class Attendee implements Comparable {
+public class Attendee implements Comparable<Attendee> {
 
 
 
@@ -75,12 +75,7 @@ public class Attendee implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        if( o instanceof Attendee ){
-            return this.name.getFirstName().compareTo(((Attendee)o).getName().getFirstName());
-        }
-        else{
-            return 0;
-        }
+    public int compareTo(Attendee other) {
+        return getName().compareTo(other.getName());
     }
 }

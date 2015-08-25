@@ -16,12 +16,14 @@ import android.view.ViewGroup;
 import com.adamkis.astronchallenge.R;
 import com.adamkis.astronchallenge.common.Const;
 import com.adamkis.astronchallenge.model.Attendee;
+import com.adamkis.astronchallenge.model.Name;
 import com.adamkis.astronchallenge.network.GsonRequest;
 import com.adamkis.astronchallenge.network.VolleySingleton;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -131,6 +133,9 @@ public class MainActivity extends ActionBarActivity {
 
 
                         List attendees = Arrays.asList(response);
+
+
+
                         Collections.sort(attendees);
 
                         // specify an adapter (see also next example)
