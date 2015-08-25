@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.adamkis.astronchallenge.R;
@@ -26,12 +27,12 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView mTextView;
-        public NetworkImageView networkImageView;
+        public ImageView icon;
 
         public ViewHolder(View v) {
             super(v);
             this.mTextView = (TextView) v.findViewById(R.id.mTextView);
-            this.networkImageView = (NetworkImageView) v.findViewById(R.id.networkImageView);
+            this.icon = (ImageView) v.findViewById(R.id.icon);
         }
     }
 
@@ -56,11 +57,14 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mTextView.setText(mDataset.get(position).toString());
+        if( mDataset.get(position).getAge() <= 20 ){
+            holder.icon.setImageResource(R.drawable.abc_btn_radio_material);
+        }else if( mDataset.get(position).getAge() <= 60 ){
+            holder.icon.setImageResource(R.drawable.abc_btn_check_to_on_mtrl_015);
+        }else{
+            holder.icon.setImageResource(R.drawable.abc_cab_background_top_mtrl_alpha);
+        }
 
-
-//        holder.networkImageView.setImageUrl(
-//                mDataset.get(position).getPhotoUrl(),
-//                VolleySingleton.getInstance(context).getImageLoader());
     }
 
 
