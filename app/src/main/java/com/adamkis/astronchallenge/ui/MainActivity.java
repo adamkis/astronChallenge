@@ -23,6 +23,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -128,11 +130,12 @@ public class MainActivity extends ActionBarActivity {
                         Log.i("LOG", "Fist: " + response[0].toString());
 
 
-
+                        List attendees = Arrays.asList(response);
+                        Collections.sort(attendees);
 
                         // specify an adapter (see also next example)
                         mAdapter = new SearchResultAdapter(getActivity(),
-                                Arrays.asList(response));
+                                attendees);
                         mRecyclerView.setAdapter(mAdapter);
 
                         loadingDialog.dismiss();

@@ -15,7 +15,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import java.util.List;
 
 /**
- * Created by adam on 7/26/15.
+ * Created by adam on 8/25/15.
  */
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder> {
 

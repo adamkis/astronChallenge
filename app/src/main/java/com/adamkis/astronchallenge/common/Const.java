@@ -3,7 +3,7 @@ package com.adamkis.astronchallenge.common;
 import android.net.Uri;
 
 /**
- * Created by adam on 7/25/15.
+ * Created by adam on 8/25/15.
  */
 public class Const {
 
