@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.adamkis.astronchallenge.R;
-import com.adamkis.astronchallenge.model.FlickrPhotoObject;
+import com.adamkis.astronchallenge.model.Attendee;
 import com.adamkis.astronchallenge.network.VolleySingleton;
 import com.android.volley.toolbox.NetworkImageView;
 
@@ -20,7 +20,7 @@ import java.util.List;
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder> {
 
     private final Context context;
-    private List<FlickrPhotoObject> mDataset;
+    private List<Attendee> mDataset;
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -36,38 +36,34 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     }
 
 
-    public SearchResultAdapter(Context context, List<FlickrPhotoObject> myDataset) {
+    public SearchResultAdapter(Context context, List<Attendee> myDataset) {
         this.mDataset = myDataset;
         this.context = context;
     }
 
-    // Create new views (invoked by the layout manager)
+
     @Override
     public SearchResultAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
-        // create a new view
+
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.search_result_card, parent, false);
-        // set the view's size, margins, paddings and layout parameters
 
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
         holder.mTextView.setText(mDataset.get(position).toString());
 
 
-        holder.networkImageView.setImageUrl(
-                mDataset.get(position).getPhotoUrl(),
-                VolleySingleton.getInstance(context).getImageLoader());
+//        holder.networkImageView.setImageUrl(
+//                mDataset.get(position).getPhotoUrl(),
+//                VolleySingleton.getInstance(context).getImageLoader());
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+
     @Override
     public int getItemCount() {
         return mDataset.size();

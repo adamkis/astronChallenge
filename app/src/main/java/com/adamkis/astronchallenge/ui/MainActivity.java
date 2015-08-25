@@ -12,16 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.adamkis.astronchallenge.R;
 import com.adamkis.astronchallenge.common.Const;
-import com.adamkis.astronchallenge.model.FlickrSearchResponse;
+import com.adamkis.astronchallenge.model.Attendee;
 import com.adamkis.astronchallenge.network.GsonRequest;
 import com.adamkis.astronchallenge.network.VolleySingleton;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
+
+import java.util.Arrays;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -112,24 +113,26 @@ public class MainActivity extends ActionBarActivity {
 
         private void download(){
 
-            Log.i("LOG", "Call made!");
+            Log.i("LOG", "Call made: " + Const.buildSearchUrl());
 
 
             GsonRequest jsObjRequest = new GsonRequest(
-                Const.buildSearchUrl("cool"),
-                FlickrSearchResponse.class,
+                Const.buildSearchUrl(),
+                Attendee[].class,
                 null,
-                new Response.Listener<FlickrSearchResponse>() {
+                new Response.Listener<Attendee[]>() {
 
                     @Override
-                    public void onResponse(FlickrSearchResponse response) {
-                        Log.i("LOG", "FlickrSearchResponse: " + response.toString());
-                        Log.i("LOG", "Photo url: " + response.getFlickrResponsePhotosObject().getPhotoList().get(0).getPhotoUrl());
+                    public void onResponse(Attendee[] response) {
+                        Log.i("LOG", "Response: " + response.toString());
+                        Log.i("LOG", "Fist: " + response[0].toString());
+
+
 
 
                         // specify an adapter (see also next example)
                         mAdapter = new SearchResultAdapter(getActivity(),
-                                response.getFlickrResponsePhotosObject().getPhotoList());
+                                Arrays.asList(response));
                         mRecyclerView.setAdapter(mAdapter);
 
                         loadingDialog.dismiss();
