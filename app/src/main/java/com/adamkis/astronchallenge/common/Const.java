@@ -7,6 +7,10 @@ import android.net.Uri;
  */
 public class Const {
 
+
+    public static int AGE_LIMIT_WORKER = 20;
+    public static int AGE_LIMIT_RETIRED = 60;
+
 //    http://mash1.astron.hu:23985/recruiting/attendees
 
     public static String buildSearchUrl(){

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.adamkis.astronchallenge.R;
+import com.adamkis.astronchallenge.common.Const;
 import com.adamkis.astronchallenge.model.Attendee;
 import com.adamkis.astronchallenge.network.VolleySingleton;
 import com.android.volley.toolbox.NetworkImageView;
@@ -57,9 +58,9 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mTextView.setText(mDataset.get(position).toString());
-        if( mDataset.get(position).getAge() <= 20 ){
+        if( mDataset.get(position).getAge() <= Const.AGE_LIMIT_WORKER ){
             holder.icon.setImageResource(R.drawable.abc_btn_radio_material);
-        }else if( mDataset.get(position).getAge() <= 60 ){
+        }else if( mDataset.get(position).getAge() <= Const.AGE_LIMIT_RETIRED ){
             holder.icon.setImageResource(R.drawable.abc_btn_check_to_on_mtrl_015);
         }else{
             holder.icon.setImageResource(R.drawable.abc_cab_background_top_mtrl_alpha);
