@@ -3,6 +3,7 @@ package com.adamkis.astronchallenge.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.adamkis.astronchallenge.common.Const;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -15,6 +16,8 @@ import java.util.List;
  */
 public class Attendee implements Comparable<Attendee>, Parcelable {
 
+
+    public enum AgeGroup { STUDENT, WORKER, RETIRED }
 
     @Expose
     @SerializedName("name")
@@ -65,6 +68,17 @@ public class Attendee implements Comparable<Attendee>, Parcelable {
 
     public void setName(Name name) {
         this.name = name;
+    }
+
+
+    public AgeGroup getAgeGroup(){
+        if( getAge() <= Const.AGE_LIMIT_WORKER ){
+            return AgeGroup.STUDENT;
+        }else if( getAge() <= Const.AGE_LIMIT_RETIRED ){
+            return AgeGroup.WORKER;
+        }else{
+            return AgeGroup.RETIRED;
+        }
     }
 
     @Override

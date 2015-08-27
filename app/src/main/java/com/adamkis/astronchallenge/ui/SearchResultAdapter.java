@@ -60,11 +60,14 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mTextView.setText(mDataset.get(position).toString());
-        if( mDataset.get(position).getAge() <= Const.AGE_LIMIT_WORKER ){
+
+
+        Attendee.AgeGroup ageGroup = mDataset.get(position).getAgeGroup();
+        if( ageGroup == Attendee.AgeGroup.STUDENT ){
             holder.icon.setImageResource(R.drawable.abc_btn_radio_material);
-        }else if( mDataset.get(position).getAge() <= Const.AGE_LIMIT_RETIRED ){
+        }else if( ageGroup == Attendee.AgeGroup.WORKER ){
             holder.icon.setImageResource(R.drawable.abc_btn_check_to_on_mtrl_015);
-        }else{
+        }else if( ageGroup == Attendee.AgeGroup.RETIRED ){
             holder.icon.setImageResource(R.drawable.abc_cab_background_top_mtrl_alpha);
         }
 
