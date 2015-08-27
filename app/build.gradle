@@ -1,5 +1,12 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repository-achartengine.forge.cloudbees.com/snapshot/"
+    }
+}
+
 android {
     compileSdkVersion 22
     buildToolsVersion "21.1.2"
@@ -26,4 +33,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.android.support:cardview-v7:22.2.+'
     compile 'com.android.support:recyclerview-v7:22.2.+'
+    compile "org.achartengine:achartengine:1.1.0"
 }
