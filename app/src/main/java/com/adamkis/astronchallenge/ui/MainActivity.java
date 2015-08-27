@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.adamkis.astronchallenge.R;
@@ -43,12 +44,11 @@ import java.util.List;
 public class MainActivity extends Activity {
 
 
-    private NetworkImageView networkImageView;
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
     private SearchResultAdapter mAdapter;
     private Dialog loadingDialog;
-    private LinearLayout chartContainer;
+    private Button btn_go_to_chart;
 
 
     @Override
@@ -59,6 +59,8 @@ public class MainActivity extends Activity {
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        btn_go_to_chart = (Button) findViewById(R.id.btn_go_to_chart);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -78,73 +80,17 @@ public class MainActivity extends Activity {
         download();
 
 
-
-        chartContainer = (LinearLayout) findViewById(R.id.chart);
-        openChart( chartContainer );
-
+        btn_go_to_chart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ChartActivity.class));
+            }
+        });
 
 
     }
 
 
-
-    private void openChart(ViewGroup chartContainer) {
-
-        // Pie Chart Section Names
-        String[] code = new String[] { "Froyo", "Gingerbread",
-                "IceCream Sandwich", "Jelly Bean", "KitKat" };
-
-        // Pie Chart Section Value
-        double[] distribution = { 0.5, 9.1, 7.8, 45.5, 33.9 };
-
-        // Color of each Pie Chart Sections
-        int[] colors = { Color.BLUE, Color.MAGENTA, Color.GREEN, Color.CYAN,
-                Color.RED };
-
-        // Instantiating CategorySeries to plot Pie Chart
-        CategorySeries distributionSeries = new CategorySeries(
-                " Android version distribution as on October 1, 2012");
-        for (int i = 0; i < distribution.length; i++) {
-            // Adding a slice with its values and name to the Pie Chart
-            distributionSeries.add(code[i], distribution[i]);
-        }
-
-        // Instantiating a renderer for the Pie Chart
-        DefaultRenderer defaultRenderer = new DefaultRenderer();
-        for (int i = 0; i < distribution.length; i++) {
-            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-            seriesRenderer.setColor(colors[i]);
-            seriesRenderer.setDisplayChartValues(true);
-//Adding colors to the chart
-            defaultRenderer.setBackgroundColor(Color.BLACK);
-            defaultRenderer.setApplyBackgroundColor(true);
-            // Adding a renderer for a slice
-            defaultRenderer.addSeriesRenderer(seriesRenderer);
-        }
-
-        defaultRenderer
-                .setChartTitle("Android version distribution as on December 1, 2014. ");
-        defaultRenderer.setChartTitleTextSize(20);
-        defaultRenderer.setZoomButtonsVisible(false);
-
-        // this part is used to display graph on the xml
-        // Creating an intent to plot bar chart using dataset and
-        // multipleRenderer
-        // Intent intent = ChartFactory.getPieChartIntent(getBaseContext(),
-        // distributionSeries , defaultRenderer, "AChartEnginePieChartDemo");
-
-        // Start Activity
-        // startActivity(intent);
-
-        // remove any views before u paint the chart
-        chartContainer.removeAllViews();
-        // drawing pie chart
-        View mChart = ChartFactory.getPieChartView(this,
-                distributionSeries, defaultRenderer);
-        // adding the view to the linearlayout
-        chartContainer.addView(mChart);
-
-    }
 
     private void download(){
 
