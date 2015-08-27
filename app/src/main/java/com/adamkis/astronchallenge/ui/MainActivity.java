@@ -49,6 +49,7 @@ public class MainActivity extends Activity {
     private SearchResultAdapter mAdapter;
     private Dialog loadingDialog;
     private Button btn_go_to_chart;
+    private ArrayList<Attendee> attendees;
 
 
     @Override
@@ -83,7 +84,9 @@ public class MainActivity extends Activity {
         btn_go_to_chart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ChartActivity.class));
+                Intent intent = new Intent(MainActivity.this, ChartActivity.class);
+                intent.putParcelableArrayListExtra(Const.ATTENDEES_KEY, attendees);
+                startActivity(intent);
             }
         });
 
@@ -109,7 +112,7 @@ public class MainActivity extends Activity {
                         Log.i("LOG", "Fist: " + response[0].toString());
 
 
-                        List attendees = Arrays.asList(response);
+                        attendees = new ArrayList<Attendee>(Arrays.asList(response));
 
 
 

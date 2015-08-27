@@ -3,6 +3,7 @@ package com.adamkis.astronchallenge.ui;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,31 +11,50 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.adamkis.astronchallenge.R;
+import com.adamkis.astronchallenge.common.Const;
+import com.adamkis.astronchallenge.model.Attendee;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
+import java.util.ArrayList;
+
 public class ChartActivity extends ActionBarActivity {
 
     private LinearLayout chartContainer;
+    private ArrayList<Attendee> attendees;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
 
+        Bundle extras = getIntent().getExtras();
+
+        if( extras == null || !extras.containsKey(Const.ATTENDEES_KEY) ){
+            finish();
+            Log.e(Const.LOG_TAG, "No data in ChartActivity - quitting");
+            return;
+        }
+
+        attendees = extras.getParcelableArrayList(Const.ATTENDEES_KEY);
 
 
         chartContainer = (LinearLayout) findViewById(R.id.chart);
-        openChart( chartContainer );
+        openChart( chartContainer, attendees );
 
     }
 
 
 
-    private void openChart(ViewGroup chartContainer) {
+    private void openChart(ViewGroup chartContainer, ArrayList<Attendee> attendees) {
+
+
+        for( Attendee a : attendees ){
+            Log.i(Const.LOG_TAG, a.toString());
+        }
 
         // Pie Chart Section Names
         String[] code = new String[] { "Froyo", "Gingerbread",
