@@ -19,6 +19,10 @@ public class Attendee implements Comparable<Attendee>, Parcelable {
 
     public enum AgeGroup { STUDENT, WORKER, RETIRED }
 
+
+    // Pie Chart Section Names
+    public static final String[] AGE_GROUP_NAMES = new String[] { "Student", "Worker", "Retired" };
+
     @Expose
     @SerializedName("name")
     private Name name;
