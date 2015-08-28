@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.adamkis.astronchallenge"
-        minSdkVersion 10
+        minSdkVersion 12
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
