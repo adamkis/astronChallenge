@@ -2,10 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity$PlaceholderFragment"
     >
 
@@ -15,16 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbarStyle="outsideInset"
+        android:clipToPadding="false"
+        android:paddingTop="10dp"
+        android:paddingBottom="70dp"
         android:alpha="0"
         />
 
 
 
-    <Button
-        android:id="@+id/btnGoToChart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/goToChart"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="bottom|center_horizontal"
+        android:src="@drawable/icon_pie_chart"
         android:text="Go To Chart"
         android:alpha="0"
         />

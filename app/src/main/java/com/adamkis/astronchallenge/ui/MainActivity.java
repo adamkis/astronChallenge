@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.adamkis.astronchallenge.R;
 import com.adamkis.astronchallenge.common.Const;
@@ -29,7 +28,7 @@ public class MainActivity extends Activity {
     private RecyclerView searchResultContainer;
     private LinearLayoutManager mLayoutManager;
     private SearchResultAdapter mAdapter;
-    private Button btnGoToChart;
+    private View goToChart;
     private View loadingProgressBar;
     private ArrayList<Attendee> attendees;
 
@@ -41,7 +40,7 @@ public class MainActivity extends Activity {
 
         searchResultContainer = (RecyclerView) findViewById(R.id.searchResultContainer);
 
-        btnGoToChart = (Button) findViewById(R.id.btnGoToChart);
+        goToChart = findViewById(R.id.goToChart);
         loadingProgressBar =  findViewById(R.id.loadingProgressBar);
 
         searchResultContainer.setHasFixedSize(true);
@@ -52,7 +51,7 @@ public class MainActivity extends Activity {
         download();
 
 
-        btnGoToChart.setOnClickListener(new View.OnClickListener() {
+        goToChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ChartActivity.class);
@@ -94,7 +93,7 @@ public class MainActivity extends Activity {
                         searchResultContainer.setAdapter(mAdapter);
 
                         Utils.hideLoadingAnimated(loadingProgressBar, searchResultContainer);
-                        Utils.revealViewAnimated(btnGoToChart);
+                        Utils.revealViewAnimated(goToChart);
 
 
                     }
