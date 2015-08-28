@@ -60,7 +60,9 @@ public class ChartActivity extends ActionBarActivity {
         int[] ageDistribution = { ageAnalysis.getNumberOfStudents(), ageAnalysis.getNumberOfWorkers(), ageAnalysis.getNumberOfRetired() };
 
         // Color of each Pie Chart Sections
-        int[] colors = { Color.BLUE,Color.GREEN,Color.RED };
+        int[] colors = {    Color.parseColor("#009688"),
+                            Color.parseColor("#00BCD4"),
+                            Color.parseColor("#03A9F4")};
 
         // Instantiating CategorySeries to plot Pie Chart
         CategorySeries distributionSeries = new CategorySeries("Age group distribution of workers");
@@ -83,6 +85,7 @@ public class ChartActivity extends ActionBarActivity {
         }
 
         defaultRenderer.setChartTitle("Age group distribution of workers");
+        defaultRenderer.setLabelsColor(Color.BLACK);
         defaultRenderer.setChartTitleTextSize(50);
         defaultRenderer.setLabelsTextSize(50);
         defaultRenderer.setLegendTextSize(50);

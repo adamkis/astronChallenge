@@ -49,7 +49,7 @@ public class Utils {
 
     }
 
-    private static final int loadingAnimationDurationMillis = 3000;
+    private static final int loadingAnimationDurationMillis = 2000;
 
     public static void hideLoadingAnimated( View loading, View container ){
         crossfadeViews(loading, container, false, true, loadingAnimationDurationMillis);
