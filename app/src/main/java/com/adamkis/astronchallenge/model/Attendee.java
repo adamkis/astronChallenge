@@ -12,16 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by adam on 8/25/15.
- */
+* Created by adam on 8/25/15.
+*/
 public class Attendee implements Comparable<Attendee>, Parcelable {
 
 
     public enum AgeGroup { STUDENT, WORKER, RETIRED }
-
-
-    // Pie Chart Section Names
     public static final String[] AGE_GROUP_NAMES = new String[] { "Student", "Worker", "Retired" };
+
+    public enum GenderType { MALE, FEMALE, UNDEFINED }
+    public static final String MALE_KEY = "male";
+    public static final String FEMALE_KEY = "female";
 
     @Expose
     @SerializedName("name")
@@ -42,11 +43,22 @@ public class Attendee implements Comparable<Attendee>, Parcelable {
     private int id;
 
 
-    public String getGender() {
+    public String getGenderString() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public GenderType getGender() {
+        if( getGenderString().equals(MALE_KEY) ){
+            return GenderType.MALE;
+        } else if( getGenderString().equals(FEMALE_KEY) ){
+            return GenderType.FEMALE;
+        }
+        else{
+            return GenderType.UNDEFINED;
+        }
+    }
+
+    public void setGenderString(String gender) {
         this.gender = gender;
     }
 

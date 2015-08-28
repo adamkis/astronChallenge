@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,26 +24,30 @@ import java.util.List;
  */
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder> {
 
-    private final Context context;
     private List<Attendee> mDataset;
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView mTextView;
+        public TextView name;
+//        public TextView gender;
+//        public TextView age;
+//        public TextView id;
         public ImageView icon;
 
         public ViewHolder(View v) {
             super(v);
-            this.mTextView = (TextView) v.findViewById(R.id.mTextView);
+            this.name = (TextView) v.findViewById(R.id.name);
+//            this.gender = (TextView) v.findViewById(R.id.gender);
+//            this.age = (TextView) v.findViewById(R.id.age);
+//            this.id = (TextView) v.findViewById(R.id.id);
             this.icon = (ImageView) v.findViewById(R.id.icon);
         }
     }
 
 
-    public SearchResultAdapter(Context context, List<Attendee> myDataset) {
+    public SearchResultAdapter(List<Attendee> myDataset) {
         this.mDataset = myDataset;
-        this.context = context;
     }
 
 
@@ -51,7 +56,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
                                                    int viewType) {
 
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.search_result_card, parent, false);
+                .inflate(R.layout.attendee_card, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -59,27 +64,29 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataset.get(position).toString());
+        holder.name.setText(mDataset.get(position).getName().getFullName());
+//        holder.gender.setText(mDataset.get(position).getGenderString());
+//        holder.gender.setText(mDataset.get(position).getGender());
+//        holder.age.setText(mDataset.get(position).getAge());
+//        holder.id.setText(mDataset.get(position).getId());
 
 
         Attendee.AgeGroup ageGroup = mDataset.get(position).getAgeGroup();
         if( ageGroup == Attendee.AgeGroup.STUDENT ){
-            holder.icon.setImageResource(R.drawable.abc_btn_radio_material);
+            holder.icon.setImageResource(R.drawable.abc_btn_check_material);
         }else if( ageGroup == Attendee.AgeGroup.WORKER ){
-            holder.icon.setImageResource(R.drawable.abc_btn_check_to_on_mtrl_015);
+            holder.icon.setImageResource(R.drawable.abc_btn_radio_material);
         }else if( ageGroup == Attendee.AgeGroup.RETIRED ){
-            holder.icon.setImageResource(R.drawable.abc_cab_background_top_mtrl_alpha);
+            holder.icon.setImageResource(R.drawable.abc_btn_radio_to_on_mtrl_015);
         }
 
-        LinearLayout.LayoutParams lllp = (LinearLayout.LayoutParams)holder.icon.getLayoutParams();
-
-        if( mDataset.get(position).getGender().equals("male") ){
+        FrameLayout.LayoutParams lllp = (FrameLayout.LayoutParams)holder.icon.getLayoutParams();
+        if( mDataset.get(position).getGender() == Attendee.GenderType.MALE ){
             lllp.gravity= Gravity.RIGHT;
         }
         else{
             lllp.gravity= Gravity.LEFT;
         }
-
         holder.icon.setLayoutParams(lllp);
 
     }

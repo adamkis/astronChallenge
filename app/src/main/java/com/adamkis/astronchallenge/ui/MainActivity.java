@@ -119,8 +119,7 @@ public class MainActivity extends Activity {
                         Collections.sort(attendees);
 
                         // specify an adapter (see also next example)
-                        mAdapter = new SearchResultAdapter(MainActivity.this,
-                                attendees);
+                        mAdapter = new SearchResultAdapter(attendees);
                         mRecyclerView.setAdapter(mAdapter);
 
                         loadingDialog.dismiss();

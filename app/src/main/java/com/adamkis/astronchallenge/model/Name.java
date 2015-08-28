@@ -42,6 +42,9 @@ public class Name implements Comparable<Name>, Parcelable {
         this.lastName = lastName;
     }
 
+    public String getFullName() {
+        return getFirstName() + " " + getLastName();
+    }
 
     @Override
     public String toString() {
