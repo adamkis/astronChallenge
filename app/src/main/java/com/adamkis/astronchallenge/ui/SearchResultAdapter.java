@@ -29,18 +29,16 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView name;
-//        public TextView gender;
-//        public TextView age;
-//        public TextView id;
+        public TextView tvName;
+        public TextView tvGender;
+        public TextView tvAge;
         public ImageView icon;
 
         public ViewHolder(View v) {
             super(v);
-            this.name = (TextView) v.findViewById(R.id.name);
-//            this.gender = (TextView) v.findViewById(R.id.gender);
-//            this.age = (TextView) v.findViewById(R.id.age);
-//            this.id = (TextView) v.findViewById(R.id.id);
+            this.tvName = (TextView) v.findViewById(R.id.tvName);
+            this.tvGender = (TextView) v.findViewById(R.id.tvGender);
+            this.tvAge = (TextView) v.findViewById(R.id.tvAge);
             this.icon = (ImageView) v.findViewById(R.id.icon);
         }
     }
@@ -64,11 +62,9 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.name.setText(mDataset.get(position).getName().getFullName());
-//        holder.gender.setText(mDataset.get(position).getGenderString());
-//        holder.gender.setText(mDataset.get(position).getGender());
-//        holder.age.setText(mDataset.get(position).getAge());
-//        holder.id.setText(mDataset.get(position).getId());
+        holder.tvName.setText(mDataset.get(position).getName().getFullName());
+        holder.tvGender.setText("" + mDataset.get(position).getGenderString());
+        holder.tvAge.setText("" + mDataset.get(position).getAge());
 
 
         Attendee.AgeGroup ageGroup = mDataset.get(position).getAgeGroup();

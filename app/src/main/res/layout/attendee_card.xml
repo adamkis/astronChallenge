@@ -26,13 +26,12 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:fontFamily="sans-serif-thin"
-                android:text="Kevin Smith"
                 android:textSize="25sp"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -50,6 +49,33 @@
 
 
         </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/tvAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:gravity="left"
+            />
+
+
+
+        <TextView
+            android:id="@+id/tvGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:gravity="left"
+            />
+
+
+
 
 
     </LinearLayout>
