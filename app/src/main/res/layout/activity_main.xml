@@ -1,9 +1,9 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity$PlaceholderFragment"
-    >
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/searchResultContainer"
@@ -18,17 +18,15 @@
         />
 
 
-
-    <ImageView
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/goToChart"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="bottom|center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
         android:src="@drawable/icon_pie_chart"
-        android:text="Go To Chart"
-        android:alpha="0"
-        />
+        app:layout_anchor="@id/searchResultContainer"
+        app:layout_anchorGravity="bottom|center_horizontal"/>
 
 
 
@@ -42,4 +40,5 @@
 
 
 
-</FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>
