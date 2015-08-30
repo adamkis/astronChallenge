@@ -1,44 +1,52 @@
-<android.support.design.widget.CoordinatorLayout
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/searchResultContainer"
-        android:scrollbars="vertical"
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbarStyle="outsideInset"
-        android:clipToPadding="false"
-        android:paddingTop="10dp"
-        android:paddingBottom="70dp"
-        android:alpha="0"
-        />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/searchResultContainer"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarStyle="outsideInset"
+            android:clipToPadding="false"
+            android:paddingTop="10dp"
+            android:paddingBottom="70dp"
+            />
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/goToChart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:src="@drawable/icon_pie_chart"
-        app:layout_anchor="@id/searchResultContainer"
-        app:layout_anchorGravity="bottom|center_horizontal"/>
-
-
-
-    <ProgressBar
-        android:id="@+id/loadingProgressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminateDrawable="@drawable/thin_progressbar" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/goToChart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:src="@drawable/icon_pie_chart"
+            app:layout_anchor="@id/searchResultContainer"
+            app:layout_anchorGravity="bottom|center_horizontal"
+            android:alpha="0"
+            />
 
 
 
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/thin_progressbar" />
 
-</android.support.design.widget.CoordinatorLayout>
+
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

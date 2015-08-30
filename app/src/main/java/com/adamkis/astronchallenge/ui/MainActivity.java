@@ -3,10 +3,12 @@ package com.adamkis.astronchallenge.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.adamkis.astronchallenge.R;
 import com.adamkis.astronchallenge.common.Const;
@@ -22,7 +24,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements SwipeRefreshLayout.OnRefreshListener {
 
 
     private RecyclerView searchResultContainer;
@@ -31,6 +33,7 @@ public class MainActivity extends Activity {
     private View goToChart;
     private View loadingProgressBar;
     private ArrayList<Attendee> attendees;
+    private SwipeRefreshLayout swipeContainer;
 
 
     @Override
@@ -42,11 +45,14 @@ public class MainActivity extends Activity {
 
         goToChart = findViewById(R.id.goToChart);
         loadingProgressBar =  findViewById(R.id.loadingProgressBar);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
         searchResultContainer.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
         searchResultContainer.setLayoutManager(mLayoutManager);
+
+        swipeContainer.setOnRefreshListener(this);
 
         download();
 
@@ -68,7 +74,7 @@ public class MainActivity extends Activity {
     private void download(){
 
         Log.i("LOG", "Call made: " + Const.buildSearchUrl());
-
+        Utils.showLoadingImmediate(loadingProgressBar, searchResultContainer);
 
         GsonRequest jsObjRequest = new GsonRequest(
                 Const.buildSearchUrl(),
@@ -80,6 +86,7 @@ public class MainActivity extends Activity {
                     public void onResponse(Attendee[] response) {
                         Log.i("LOG", "Response: " + response.toString());
                         Log.i("LOG", "Fist: " + response[0].toString());
+                        swipeContainer.setRefreshing(false);
 
 
                         attendees = new ArrayList<Attendee>(Arrays.asList(response));
@@ -101,7 +108,9 @@ public class MainActivity extends Activity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                swipeContainer.setRefreshing(false);
                 Log.i("LOG", "VolleyError: " + error.toString());
+                Toast.makeText(MainActivity.this, "VolleyError: " + error.toString(), Toast.LENGTH_LONG).show();
 
             }
         });
@@ -111,7 +120,8 @@ public class MainActivity extends Activity {
     }
 
 
-
-
-
+    @Override
+    public void onRefresh() {
+        download();
+    }
 }
